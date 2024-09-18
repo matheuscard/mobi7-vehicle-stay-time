@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PointInterestGateway {
     PointInterest insertPointInterest(PointInterest poiDomainObj);
-    List<PointInterest> getPointInterestWithPositions(List<Position> positionDomainObj);
+    List<PointInterest> getPointInterestWithPositions(List<Position> positions);
 }

@@ -6,7 +6,9 @@ import com.mob7.vehiclestaytime.domain.model.Position;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestEntity;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PointInterestRepositoryGateway implements PointInterestGateway {
     private final PointInterestRepository pointInterestRepository;
@@ -24,7 +26,16 @@ public class PointInterestRepositoryGateway implements PointInterestGateway {
     }
 
     @Override
-    public List<PointInterest> getPointInterestWithPositions(List<Position> positionDomainObj) {
-        return null;
+    public List<PointInterest> getPointInterestWithPositions(List<Position> positions) {
+        Set<PointInterest> points = new HashSet<>();
+        positions.forEach(position -> {
+            var poi = pointInterestRepository.findPointInterest(position.latitude(),position.longitude());
+            poi.ifPresent(pointInterest -> {
+                pointInterest.positions().add(position);
+                points.add(poi.get());
+            });
+        });
+        return points.stream().toList();
+
     }
 }
