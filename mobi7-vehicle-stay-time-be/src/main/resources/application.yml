@@ -1,0 +1,19 @@
+spring:
+    application:
+        name: mobi7-vehicle-stay-time-be
+    datasource:
+        url: jdbc:mysql://localhost:3306/vehiclestaytime
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLDialect
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+
+mob7feign:
+        name: mob7
+        url: https://challenge-backend.mobi7.io/
