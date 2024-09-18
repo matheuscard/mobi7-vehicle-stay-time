@@ -3,8 +3,6 @@ package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Builder

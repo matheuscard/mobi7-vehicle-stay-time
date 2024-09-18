@@ -1,6 +1,6 @@
 package com.mob7.vehiclestaytime.infrastructure.preset;
 
-import com.mob7.vehiclestaytime.application.usecases.CreatePointInterestInteractor;
+import com.mob7.vehiclestaytime.application.usecases.CreatePointInterestUseCase;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.PointInterestClient;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FirstInsertPoi implements ApplicationRunner {
-    private final CreatePointInterestInteractor createPointInterestInteractor;
+    private final CreatePointInterestUseCase createPointInterestUseCase;
     private final Logger logger = LoggerFactory.getLogger(FirstInsertPoi.class);
     private final PointInterestRepository pointInterestRepository;
 
@@ -21,8 +21,8 @@ public class FirstInsertPoi implements ApplicationRunner {
     private final PointInterestClient pointInterestClient;
     private final PointInterestDTOMapper pointInterestDTOMapper;
 
-    public FirstInsertPoi(CreatePointInterestInteractor createPointInterestInteractor, PointInterestRepository pointInterestRepository, PointInterestClient pointInterestClient, PointInterestDTOMapper pointInterestDTOMapper) {
-        this.createPointInterestInteractor = createPointInterestInteractor;
+    public FirstInsertPoi(CreatePointInterestUseCase createPointInterestUseCase, PointInterestRepository pointInterestRepository, PointInterestClient pointInterestClient, PointInterestDTOMapper pointInterestDTOMapper) {
+        this.createPointInterestUseCase = createPointInterestUseCase;
         this.pointInterestRepository = pointInterestRepository;
         this.pointInterestClient = pointInterestClient;
         this.pointInterestDTOMapper = pointInterestDTOMapper;
@@ -37,7 +37,7 @@ public class FirstInsertPoi implements ApplicationRunner {
         logger.info("Nenhum poi cadastrado.");
         pointInterestClient.getPoints().forEach(pointInterestResponse -> {
             var poi = pointInterestDTOMapper.toDomain(pointInterestResponse);
-            createPointInterestInteractor.insertPointInterest(poi);
+            createPointInterestUseCase.insertPointInterest(poi);
         });
 
     }
