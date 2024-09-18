@@ -1,4 +1,4 @@
-package com.mob7.mobi7_vehicle_stay_time_be;
+package com.mob7.vehiclestaytime;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

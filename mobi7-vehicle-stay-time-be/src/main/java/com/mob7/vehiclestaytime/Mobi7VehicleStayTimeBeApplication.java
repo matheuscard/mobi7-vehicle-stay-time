@@ -1,4 +1,4 @@
-package com.mob7.mobi7_vehicle_stay_time_be;
+package com.mob7.vehiclestaytime;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
