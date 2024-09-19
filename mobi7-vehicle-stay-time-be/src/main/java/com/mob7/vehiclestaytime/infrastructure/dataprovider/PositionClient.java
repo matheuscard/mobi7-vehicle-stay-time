@@ -13,5 +13,7 @@ import java.util.List;
 @FeignClient(name = "${mob7feign.name-pos}", url = "${mob7feign.url}")
 public interface PositionClient {
     @RequestMapping(method = RequestMethod.GET, path = "/posicao")
-    List<PositionResponse> getPoints(@RequestParam(value="placa") String plate, @RequestParam(value = "data") String date);
+    List<PositionResponse> getPositions(@RequestParam(value="placa") String plate, @RequestParam(value = "data") String date);
+    @RequestMapping(method = RequestMethod.GET, path = "/posicao")
+    List<PositionResponse> getPositions();
 }

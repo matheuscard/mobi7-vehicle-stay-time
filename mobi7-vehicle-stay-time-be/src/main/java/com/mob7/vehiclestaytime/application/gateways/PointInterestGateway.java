@@ -5,6 +5,6 @@ import com.mob7.vehiclestaytime.domain.model.Position;
 import java.util.List;
 
 public interface PointInterestGateway {
-    PointInterest insertPointInterest(PointInterest poiDomainObj);
-    List<PointInterest> getPointInterestWithPositions(List<Position> positions);
+    PointInterest insertPointInterest(final PointInterest poiDomainObj);
+    List<PointInterest> getPointInterestWithPositions(final List<Position> positions);
 }

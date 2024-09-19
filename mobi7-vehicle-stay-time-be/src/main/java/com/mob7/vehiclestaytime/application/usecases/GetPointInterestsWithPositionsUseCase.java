@@ -8,11 +8,11 @@ import java.util.List;
 public class GetPointInterestsWithPositionsUseCase {
     private PointInterestGateway pointInterestGateway;
 
-    public GetPointInterestsWithPositionsUseCase(PointInterestGateway pointInterestGateway) {
+    public GetPointInterestsWithPositionsUseCase(final PointInterestGateway pointInterestGateway) {
         this.pointInterestGateway = pointInterestGateway;
     }
 
-    public List<PointInterest> getPointInterestsWithPositions(List<Position> positions){
+    public List<PointInterest> getPointInterestsWithPositions(final List<Position> positions){
         return pointInterestGateway.getPointInterestWithPositions(positions);
     }
     

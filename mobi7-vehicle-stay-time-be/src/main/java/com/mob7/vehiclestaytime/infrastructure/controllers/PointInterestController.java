@@ -26,7 +26,7 @@ public class PointInterestController {
 
     @GetMapping
     List<PointInterestResponse> get(PositionRequest positionRequest){
-        List<PositionResponse> positions = positionClient.getPoints(positionRequest.getPlate(),positionRequest.getDate());
+        List<PositionResponse> positions = positionClient.getPositions(positionRequest.getPlate(),positionRequest.getDate());
         var res= getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions(positionDTOMapper.toDomainList(positions));
         return pointInterestDTOMapper.toListPointInterestResponse(res);
     }

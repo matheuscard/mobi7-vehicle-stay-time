@@ -1,13 +1,16 @@
 package com.mob7.vehiclestaytime.main;
 
 import com.mob7.vehiclestaytime.application.gateways.PointInterestGateway;
+import com.mob7.vehiclestaytime.application.gateways.PositionGateway;
 import com.mob7.vehiclestaytime.application.usecases.CreatePointInterestUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositionsUseCase;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PointInterestEntityMapper;
-import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PointInterestRepositoryGateway;
+import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PointInterestServiceGateway;
+import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PositionEntityMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
+import com.mob7.vehiclestaytime.infrastructure.persistence.PositionRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,9 +26,10 @@ public class PointInterestConfig {
     }
 
     @Bean
-    PointInterestGateway pointInterestGateway(PointInterestRepository pointInterestRepository, PointInterestEntityMapper pointInterestEntityMapper) {
-        return new PointInterestRepositoryGateway(pointInterestRepository, pointInterestEntityMapper);
+    PointInterestGateway pointInterestGateway(PointInterestRepository pointInterestRepository, PointInterestEntityMapper pointInterestEntityMapper, PositionRepository positionRepository, PositionEntityMapper positionEntityMapper) {
+        return new PointInterestServiceGateway(pointInterestRepository, pointInterestEntityMapper, positionRepository, positionEntityMapper);
     }
+
 
     @Bean
     PointInterestEntityMapper pointInterestEntityMapper() {
