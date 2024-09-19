@@ -3,6 +3,8 @@ package com.mob7.vehiclestaytime.infrastructure.persistence;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Table(name = "posicao")
 @Entity
 @AllArgsConstructor
@@ -16,7 +18,7 @@ public class PositionEntity {
     @Column(name = "placa")
     private String plate;
     @Column(name = "data")
-    private String date;
+    private LocalDateTime date;
     @Column(name = "velocidade")
     private Integer velocity;
     @Column(name = "latitude")

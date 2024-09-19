@@ -23,7 +23,8 @@ public class PointInterestEntity {
     private Integer radius;
     private Double latitude;
     private Double longitude;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pointInterest")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ponto_interesse_id", referencedColumnName = "id")
     @JsonBackReference
     private List<PositionEntity> positions;
 }

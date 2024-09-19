@@ -1,7 +1,6 @@
 package com.mob7.vehiclestaytime.application.usecases;
 
 import com.mob7.vehiclestaytime.application.gateways.PointInterestGateway;
-import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import com.mob7.vehiclestaytime.domain.model.Position;
 import java.util.List;
 
@@ -11,9 +10,8 @@ public class GetPointInterestsWithPositionsUseCase {
     public GetPointInterestsWithPositionsUseCase(final PointInterestGateway pointInterestGateway) {
         this.pointInterestGateway = pointInterestGateway;
     }
-
-    public List<PointInterest> getPointInterestsWithPositions(final List<Position> positions){
-        return pointInterestGateway.getPointInterestWithPositions(positions);
+    public List<Position> getPointInterestsWithPositions(final String plate, final String date){
+        return pointInterestGateway.getPointInterestWithPositions(plate,date);
     }
     
 }
