@@ -2,7 +2,6 @@ package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 
 import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestEntity;
-
 import java.util.ArrayList;
 
 public class PointInterestEntityMapper {

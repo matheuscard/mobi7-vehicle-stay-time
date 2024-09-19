@@ -8,6 +8,7 @@ import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestReposito
 
 import java.util.*;
 
+
 public class PointInterestRepositoryGateway implements PointInterestGateway {
     private final PointInterestRepository pointInterestRepository;
     private final PointInterestEntityMapper pointInterestEntityMapper;
@@ -28,21 +29,19 @@ public class PointInterestRepositoryGateway implements PointInterestGateway {
         List<PointInterest> points = new ArrayList<>();
         positions.forEach(position -> {
             var poi = pointInterestRepository.findPointInterest(position.latitude(),position.longitude());
-
-            poi.ifPresent(pointInterest -> {
-                PointInterest poiSaved = pointInterestEntityMapper.toDomain(poi.get());
-                if(points.stream().anyMatch(pointInterest1 -> Objects.equals(pointInterest1.id(), poiSaved.id()))){
-                    PointInterest result = points.stream().filter(pointInterest1 -> Objects.equals(pointInterest1.id(), poiSaved.id())).findFirst().get();
-                    points.remove(result);
-                    result.positions().add(position);
-                    points.add(result);
+            poi.ifPresent(pointInterest -> poi.get().forEach(point -> {
+                if(points.stream().anyMatch(poiMatch -> Objects.equals(poiMatch.id(), point.getId()))){
+                    var res = points.stream().filter(pointFilter -> Objects.equals(pointFilter.id(), point.getId())).findFirst().get();
+                    points.remove(res);
+                    res.positions().add(position);
+                    points.add(res);
                 }else{
+                    PointInterest poiSaved = pointInterestEntityMapper.toDomain(point);
                     poiSaved.positions().add(position);
                     points.add(poiSaved);
                 }
-            });
+            }));
         });
         return points.stream().toList();
-
     }
 }
