@@ -6,9 +6,7 @@ import com.mob7.vehiclestaytime.domain.model.Position;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestEntity;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PointInterestRepositoryGateway implements PointInterestGateway {
     private final PointInterestRepository pointInterestRepository;
@@ -27,12 +25,21 @@ public class PointInterestRepositoryGateway implements PointInterestGateway {
 
     @Override
     public List<PointInterest> getPointInterestWithPositions(List<Position> positions) {
-        Set<PointInterest> points = new HashSet<>();
+        List<PointInterest> points = new ArrayList<>();
         positions.forEach(position -> {
             var poi = pointInterestRepository.findPointInterest(position.latitude(),position.longitude());
+
             poi.ifPresent(pointInterest -> {
-                pointInterest.positions().add(position);
-                points.add(poi.get());
+                PointInterest poiSaved = pointInterestEntityMapper.toDomain(poi.get());
+                if(points.stream().anyMatch(pointInterest1 -> Objects.equals(pointInterest1.id(), poiSaved.id()))){
+                    PointInterest result = points.stream().filter(pointInterest1 -> Objects.equals(pointInterest1.id(), poiSaved.id())).findFirst().get();
+                    points.remove(result);
+                    result.positions().add(position);
+                    points.add(result);
+                }else{
+                    poiSaved.positions().add(position);
+                    points.add(poiSaved);
+                }
             });
         });
         return points.stream().toList();

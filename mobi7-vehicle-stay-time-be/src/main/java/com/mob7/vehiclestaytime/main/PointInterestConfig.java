@@ -4,6 +4,7 @@ import com.mob7.vehiclestaytime.application.gateways.PointInterestGateway;
 import com.mob7.vehiclestaytime.application.usecases.CreatePointInterestUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositionsUseCase;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PointInterestEntityMapper;
 import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PointInterestRepositoryGateway;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
@@ -31,8 +32,12 @@ public class PointInterestConfig {
         return new PointInterestEntityMapper();
     }
     @Bean
-    PointInterestDTOMapper pointInterestDTOMapper() {
-        return new PointInterestDTOMapper();
+    PointInterestDTOMapper pointInterestDTOMapper(PositionDTOMapper positionDTOMapper) {
+        return new PointInterestDTOMapper(positionDTOMapper);
+    }
+    @Bean
+    PositionDTOMapper positionDTOMapper() {
+        return new PositionDTOMapper();
     }
 //
 //    @Bean

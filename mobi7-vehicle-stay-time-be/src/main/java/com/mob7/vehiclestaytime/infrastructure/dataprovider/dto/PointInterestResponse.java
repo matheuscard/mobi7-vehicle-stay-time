@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class PointInterestResponse {
@@ -17,4 +19,5 @@ public class PointInterestResponse {
     private Double latitude;
     @JsonProperty("longitude")
     private Double longitude;
+    private List<PositionResponse> positions;
 }

@@ -14,11 +14,13 @@ public class PositionResponse {
     @JsonProperty("placa")
     private String plate;
     @JsonProperty("data")
-    private LocalDateTime date;
+    private String date;
     @JsonProperty("velocidade")
     private Integer velocity;
     @JsonProperty("latitude")
     private Double latitude;
     @JsonProperty("longitude")
     private Double longitude;
+    @JsonProperty("ignicao")
+    private boolean ignition;
 }

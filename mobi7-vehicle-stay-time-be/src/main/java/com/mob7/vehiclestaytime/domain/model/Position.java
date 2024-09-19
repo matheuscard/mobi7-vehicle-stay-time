@@ -1,6 +1,5 @@
 package com.mob7.vehiclestaytime.domain.model;
 
-import java.time.LocalDateTime;
 
-public record Position(String pate, LocalDateTime date, double latitude, double longitude, boolean ignition) {
+public record Position(Long id, String plate, String date,Integer velocity, double latitude, double longitude, boolean ignition) {
 }

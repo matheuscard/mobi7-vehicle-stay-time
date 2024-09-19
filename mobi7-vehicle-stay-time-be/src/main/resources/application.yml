@@ -12,8 +12,14 @@ spring:
         hibernate:
             ddl-auto: update
         show-sql: true
-
+server:
+    port: 8080
 
 mob7feign:
         name: mob7
+        name-pos: mob7-position
         url: https://challenge-backend.mobi7.io/
+
+springdoc:
+    swagger-ui:
+        path: /swagger-ui.html

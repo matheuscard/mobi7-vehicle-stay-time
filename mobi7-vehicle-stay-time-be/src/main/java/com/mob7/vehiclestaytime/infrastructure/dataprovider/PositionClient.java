@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Component
-@FeignClient(name = "${mob7feign.name}", url = "${mob7feign.url}")
+@FeignClient(name = "${mob7feign.name-pos}", url = "${mob7feign.url}")
 public interface PositionClient {
     @RequestMapping(method = RequestMethod.GET, path = "/posicao")
     List<PositionResponse> getPoints(@RequestParam(value="placa") String plate, @RequestParam(value = "data") String date);
