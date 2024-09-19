@@ -14,6 +14,4 @@ import java.util.List;
 public interface PositionClient {
     @RequestMapping(method = RequestMethod.GET, path = "/posicao")
     List<PositionResponse> getPositions(@RequestParam(value="placa") String plate, @RequestParam(value = "data") String date);
-    @RequestMapping(method = RequestMethod.GET, path = "/posicao")
-    List<PositionResponse> getPositions();
 }

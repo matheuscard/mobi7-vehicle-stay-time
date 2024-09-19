@@ -53,12 +53,5 @@ public class FirstInserts implements ApplicationRunner {
                 createPointInterestUseCase.insertPointInterest(poi);
             });
         }
-//        if(positionRepository.count()==0){
-//            positionClient.getPositions().forEach(positionResponse -> {
-//                var poi = positionDTOMapper.toDomain(positionResponse);
-//                createPositionsUseCase.insertPointInterest(poi);
-//            });
-//        }
-//        getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions( positionDTOMapper.toDomainList(positionClient.getPositions()));
     }
 }
