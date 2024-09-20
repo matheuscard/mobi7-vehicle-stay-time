@@ -3,6 +3,8 @@ package com.mob7.vehiclestaytime.infrastructure.controllers;
 import com.mob7.vehiclestaytime.application.usecases.GetCarsWithStayTimeOnPOIUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositionsUseCase;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.*;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.CarStayTimeDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.PositionDTOMapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

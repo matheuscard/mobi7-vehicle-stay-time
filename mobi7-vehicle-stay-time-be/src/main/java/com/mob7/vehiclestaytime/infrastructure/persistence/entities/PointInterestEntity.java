@@ -1,7 +1,6 @@
-package com.mob7.vehiclestaytime.infrastructure.persistence;
+package com.mob7.vehiclestaytime.infrastructure.persistence.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.mob7.vehiclestaytime.domain.model.Position;
 import jakarta.persistence.*;
 import lombok.*;
 

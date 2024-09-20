@@ -3,10 +3,11 @@ package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 import com.mob7.vehiclestaytime.application.gateways.PositionGateway;
 import com.mob7.vehiclestaytime.domain.model.Position;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.PositionClient;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionResponse;
+import com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper.PositionEntityMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
-import com.mob7.vehiclestaytime.infrastructure.persistence.PositionEntity;
+import com.mob7.vehiclestaytime.infrastructure.persistence.entities.PositionEntity;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PositionRepository;
 
 import java.time.LocalDate;

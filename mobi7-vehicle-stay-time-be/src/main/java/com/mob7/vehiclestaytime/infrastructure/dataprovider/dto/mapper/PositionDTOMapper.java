@@ -1,6 +1,9 @@
-package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
+package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper;
 
 import com.mob7.vehiclestaytime.domain.model.Position;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionResponse;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.PointInterestDTOMapper;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

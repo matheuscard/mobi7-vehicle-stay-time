@@ -1,7 +1,6 @@
 package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import lombok.Builder;
 import lombok.Data;
 

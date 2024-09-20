@@ -1,6 +1,7 @@
-package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
+package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper;
 
 import com.mob7.vehiclestaytime.domain.model.PointInterest;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestResponse;
 
 import java.util.ArrayList;
 import java.util.List;
