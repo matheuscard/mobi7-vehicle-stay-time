@@ -53,5 +53,6 @@ public class FirstInserts implements ApplicationRunner {
                 createPointInterestUseCase.insertPointInterest(poi);
             });
         }
+        final var plates = positionClient.getCars();
     }
 }

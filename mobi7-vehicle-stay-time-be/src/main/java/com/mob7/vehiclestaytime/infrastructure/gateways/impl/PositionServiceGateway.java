@@ -21,7 +21,8 @@ public class PositionServiceGateway implements PositionGateway {
     private final PositionEntityMapper positionEntityMapper;
     private final PositionClient positionClient;
     private final PositionDTOMapper positionDTOMapper;
-    public PositionServiceGateway(PointInterestRepository pointInterestRepository,  PositionRepository positionRepository, PositionEntityMapper positionEntityMapper, PositionClient positionClient, PositionDTOMapper positionDTOMapper) {
+
+    public PositionServiceGateway(PointInterestRepository pointInterestRepository, PositionRepository positionRepository, PositionEntityMapper positionEntityMapper, PositionClient positionClient, PositionDTOMapper positionDTOMapper) {
         this.pointInterestRepository = pointInterestRepository;
         this.positionRepository = positionRepository;
         this.positionEntityMapper = positionEntityMapper;
@@ -38,15 +39,14 @@ public class PositionServiceGateway implements PositionGateway {
 
     @Override
     public List<Position> getPointInterestWithPositions(String plate, String date) {
-        List<PositionResponse> res = positionClient.getPositions(plate,date);
+        List<PositionResponse> res = positionClient.getPositions(plate, date);
         var positions = positionDTOMapper.toDomainList(res);
-            positions.forEach(position -> {
-                if (positionRepository.findById(position.id()).isEmpty()) {
-                    findPointInterestAndMergeWithPosition(position);
-                }
-            });
-            List<PositionEntity> positionEntities = positionRepository.findFilteredPositions(plate, getLocalDateTime(date,true), getLocalDateTime(date,false));
-
+        positions.forEach(position -> {
+            if (positionRepository.findById(position.id()).isEmpty()) {
+                findPointInterestAndMergeWithPosition(position);
+            }
+        });
+        List<PositionEntity> positionEntities = positionRepository.findFilteredPositions(plate, getLocalDateTime(date, true), getLocalDateTime(date, false));
         return positionEntityMapper.toDomainList(positionEntities);
     }
 
@@ -66,11 +66,11 @@ public class PositionServiceGateway implements PositionGateway {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate ld;
         LocalDateTime dateLdt = null;
-        if(date !=null) {
+        if (date != null) {
             ld = LocalDate.parse(date, dateTimeFormatter);
-            if(isStartDate){
+            if (isStartDate) {
                 dateLdt = LocalDateTime.of(ld, LocalDateTime.MIN.toLocalTime());
-            }else{
+            } else {
                 dateLdt = LocalDateTime.of(ld, LocalDateTime.MAX.toLocalTime());
             }
         }

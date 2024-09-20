@@ -6,10 +6,10 @@ import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class PositionEntityMapper {
     private final PointInterestEntityMapper pointInterestEntityMapper;
+
 
     public PositionEntityMapper(PointInterestEntityMapper pointInterestEntityMapper) {
         this.pointInterestEntityMapper = pointInterestEntityMapper;

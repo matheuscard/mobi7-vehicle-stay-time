@@ -8,7 +8,7 @@ import com.mob7.vehiclestaytime.application.usecases.CreatePositionsUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetCarsWithStayTimeOnPOIUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositionsUseCase;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.PositionClient;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.CarDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.CarStayTimeDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.gateways.impl.*;
@@ -41,31 +41,31 @@ public class PointInterestConfig {
         return new PointInterestServiceGateway(pointInterestRepository, pointInterestEntityMapper);
     }
     @Bean
-    PositionGateway positionGateway(PointInterestRepository pointInterestRepository,  PositionRepository positionRepository, PositionEntityMapper positionEntityMapper, PositionClient positionClient, PositionDTOMapper positionDTOMapper){
-        return new PositionServiceGateway( pointInterestRepository,   positionRepository,  positionEntityMapper,  positionClient,  positionDTOMapper);
+    PositionGateway positionGateway(PointInterestRepository pointInterestRepository, PositionRepository positionRepository, PositionEntityMapper positionEntityMapper, PositionClient positionClient, PositionDTOMapper positionDTOMapper){
+        return new PositionServiceGateway( pointInterestRepository, positionRepository,  positionEntityMapper,  positionClient,  positionDTOMapper);
     }
     @Bean
-    CarStayTimeGateway carStayTimeGateway(PositionDTOMapper positionDTOMapper, PositionRepository positionRepository){
-        return new CarStayTimeServiceGateway(positionDTOMapper,positionRepository);
+    CarStayTimeGateway carStayTimeGateway(){
+        return new CarStayTimeServiceGateway();
     }
     @Bean
     PointInterestEntityMapper pointInterestEntityMapper() {
         return new PointInterestEntityMapper();
     }
     @Bean
-    PointInterestDTOMapper pointInterestDTOMapper(PositionDTOMapper positionDTOMapper) {
-        return new PointInterestDTOMapper(positionDTOMapper);
+    PointInterestDTOMapper pointInterestDTOMapper() {
+        return new PointInterestDTOMapper();
     }
     @Bean
     PositionEntityMapper positionEntityMapper(PointInterestEntityMapper pointInterestEntityMapper) {
         return new PositionEntityMapper(pointInterestEntityMapper);
     }
     @Bean
-    PositionDTOMapper positionDTOMapper() {
-        return new PositionDTOMapper();
+    PositionDTOMapper positionDTOMapper(PointInterestDTOMapper pointInterestDTOMapper) {
+        return new PositionDTOMapper(pointInterestDTOMapper);
     }
     @Bean
-    CarDTOMapper carStayTimeDTOMapper() {
-        return new CarDTOMapper();
+    CarStayTimeDTOMapper carStayTimeDTOMapper(PointInterestDTOMapper pointInterestDTOMapper) {
+        return new CarStayTimeDTOMapper(pointInterestDTOMapper);
     }
 }

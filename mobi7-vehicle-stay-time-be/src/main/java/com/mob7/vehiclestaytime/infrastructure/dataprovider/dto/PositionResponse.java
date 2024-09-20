@@ -22,5 +22,5 @@ public class PositionResponse {
     private Double longitude;
     @JsonProperty("ignicao")
     private boolean ignition;
-    private PointInterest PointInterest;
+    private PointInterestResponse PointInterest;
 }

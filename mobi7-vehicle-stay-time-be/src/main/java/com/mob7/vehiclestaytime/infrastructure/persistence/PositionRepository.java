@@ -15,4 +15,5 @@ public interface PositionRepository extends JpaRepository<PositionEntity, Long> 
     List<PositionEntity> findFilteredPositions(@Param("plate") String plate,
                                                @Param("startDate") LocalDateTime startDate,
                                                @Param("endDate") LocalDateTime endDate);
+
 }

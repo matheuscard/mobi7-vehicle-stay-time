@@ -16,13 +16,13 @@ public class PointInterestController {
     private final GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase;
     private final GetCarsWithStayTimeOnPOIUseCase getCarsWithStayTimeOnPOIUseCase;
     private final PositionDTOMapper positionDTOMapper;
-    private  final CarDTOMapper carDTOMapper;
+    private  final CarStayTimeDTOMapper carStayTimeDTOMapper;
 
-    public PointInterestController(GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase, GetCarsWithStayTimeOnPOIUseCase getCarsWithStayTimeOnPOIUseCase, PositionDTOMapper positionDTOMapper, CarDTOMapper carDTOMapper) {
+    public PointInterestController(GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase, GetCarsWithStayTimeOnPOIUseCase getCarsWithStayTimeOnPOIUseCase, PositionDTOMapper positionDTOMapper, CarStayTimeDTOMapper carStayTimeDTOMapper) {
         this.getPointInterestsWithPositionsUseCase = getPointInterestsWithPositionsUseCase;
         this.getCarsWithStayTimeOnPOIUseCase = getCarsWithStayTimeOnPOIUseCase;
         this.positionDTOMapper = positionDTOMapper;
-        this.carDTOMapper = carDTOMapper;
+        this.carStayTimeDTOMapper = carStayTimeDTOMapper;
     }
 
     @GetMapping
@@ -31,8 +31,8 @@ public class PointInterestController {
         return positionDTOMapper.toResponseList(res);
     }
     @GetMapping(path = "/cars")
-    List<CarReponse> getCarStayTime(PositionRequest positionRequest){
+    List<CarStayTimeReponse> getCarStayTime(PositionRequest positionRequest){
         var res = getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions(positionRequest.getPlate(),positionRequest.getDate());
-        return carDTOMapper.toResponseList(getCarsWithStayTimeOnPOIUseCase.getCarsWithStayTimeOnPOI(res));
+        return carStayTimeDTOMapper.toResponseList(getCarsWithStayTimeOnPOIUseCase.getCarsWithStayTimeOnPOI(res));
     }
 }

@@ -1,5 +1,6 @@
 package com.mob7.vehiclestaytime.infrastructure.dataprovider;
 
+import com.mob7.vehiclestaytime.domain.model.Car;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -14,4 +15,6 @@ import java.util.List;
 public interface PositionClient {
     @RequestMapping(method = RequestMethod.GET, path = "/posicao")
     List<PositionResponse> getPositions(@RequestParam(value="placa") String plate, @RequestParam(value = "data") String date);
+    @RequestMapping(method = RequestMethod.GET, path = "/posicao/placas")
+    List<String> getCars();
 }
