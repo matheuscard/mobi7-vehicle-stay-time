@@ -1,7 +1,6 @@
-package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper;
+package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
 
 import com.mob7.vehiclestaytime.domain.model.CarStayTime;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.CarStayTimeReponse;
 
 import java.util.ArrayList;
 import java.util.List;

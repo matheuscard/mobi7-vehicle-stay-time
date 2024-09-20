@@ -5,7 +5,6 @@ import com.mob7.vehiclestaytime.application.gateways.CarStayTimeGateway;
 import com.mob7.vehiclestaytime.domain.model.CarStayTime;
 import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import com.mob7.vehiclestaytime.domain.model.Position;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;

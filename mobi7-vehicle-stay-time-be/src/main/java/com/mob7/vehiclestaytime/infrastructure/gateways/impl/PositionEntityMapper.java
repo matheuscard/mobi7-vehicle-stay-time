@@ -1,4 +1,4 @@
-package com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper;
+package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 
 import com.mob7.vehiclestaytime.domain.model.Position;
 import com.mob7.vehiclestaytime.infrastructure.persistence.entities.PositionEntity;
@@ -13,7 +13,7 @@ public class PositionEntityMapper {
         this.pointInterestEntityMapper = pointInterestEntityMapper;
     }
 
-    PositionEntity toEntity(final Position posObj){
+    public PositionEntity toEntity(final Position posObj){
         return PositionEntity.builder()
                 .id(posObj.id())
                 .plate(posObj.plate())

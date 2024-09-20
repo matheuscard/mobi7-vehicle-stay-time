@@ -1,4 +1,4 @@
-package com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper;
+package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 
 import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import com.mob7.vehiclestaytime.infrastructure.persistence.entities.PointInterestEntity;

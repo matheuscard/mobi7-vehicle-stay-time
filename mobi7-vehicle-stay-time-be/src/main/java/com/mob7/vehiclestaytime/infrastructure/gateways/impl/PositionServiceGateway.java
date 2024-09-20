@@ -3,12 +3,13 @@ package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 import com.mob7.vehiclestaytime.application.gateways.PositionGateway;
 import com.mob7.vehiclestaytime.domain.model.Position;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.PositionClient;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.PositionDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionResponse;
-import com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper.PositionEntityMapper;
+import com.mob7.vehiclestaytime.infrastructure.gateways.impl.utils.DateUtils;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
 import com.mob7.vehiclestaytime.infrastructure.persistence.entities.PositionEntity;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PositionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,19 +18,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class PositionServiceGateway implements PositionGateway {
-    private final PointInterestRepository pointInterestRepository;
-    private final PositionRepository positionRepository;
-    private final PositionEntityMapper positionEntityMapper;
-    private final PositionClient positionClient;
-    private final PositionDTOMapper positionDTOMapper;
-
-    public PositionServiceGateway(PointInterestRepository pointInterestRepository, PositionRepository positionRepository, PositionEntityMapper positionEntityMapper, PositionClient positionClient, PositionDTOMapper positionDTOMapper) {
-        this.pointInterestRepository = pointInterestRepository;
-        this.positionRepository = positionRepository;
-        this.positionEntityMapper = positionEntityMapper;
-        this.positionClient = positionClient;
-        this.positionDTOMapper = positionDTOMapper;
-    }
+    @Autowired
+    private  PointInterestRepository pointInterestRepository;
+    private  PositionRepository positionRepository;
+    @Autowired
+    private  PositionEntityMapper positionEntityMapper;
+    @Autowired
+    private  PositionClient positionClient;
+    @Autowired
+    private  PositionDTOMapper positionDTOMapper;
 
     @Override
     public Position insertPosition(Position positionDomainObj) {
@@ -47,7 +44,7 @@ public class PositionServiceGateway implements PositionGateway {
                 findPointInterestAndMergeWithPosition(position);
             }
         });
-        List<PositionEntity> positionEntities = positionRepository.findFilteredPositions(plate, getLocalDateTime(date, true), getLocalDateTime(date, false));
+        List<PositionEntity> positionEntities = positionRepository.findFilteredPositions(plate, DateUtils.getLocalDateTime(date, true),DateUtils.getLocalDateTime(date, false));
         return positionEntityMapper.toDomainList(positionEntities);
     }
 
@@ -63,18 +60,5 @@ public class PositionServiceGateway implements PositionGateway {
         }));
     }
 
-    private static LocalDateTime getLocalDateTime(String date, boolean isStartDate) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate ld;
-        LocalDateTime dateLdt = null;
-        if (date != null) {
-            ld = LocalDate.parse(date, dateTimeFormatter);
-            if (isStartDate) {
-                dateLdt = LocalDateTime.of(ld, LocalDateTime.MIN.toLocalTime());
-            } else {
-                dateLdt = LocalDateTime.of(ld, LocalDateTime.MAX.toLocalTime());
-            }
-        }
-        return dateLdt;
-    }
+
 }

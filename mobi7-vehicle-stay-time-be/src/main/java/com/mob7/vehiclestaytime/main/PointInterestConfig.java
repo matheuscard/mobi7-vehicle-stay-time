@@ -7,15 +7,13 @@ import com.mob7.vehiclestaytime.application.usecases.CreatePointInterestUseCase;
 import com.mob7.vehiclestaytime.application.usecases.CreatePositionsUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetCarsWithStayTimeOnPOIUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositionsUseCase;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.PositionClient;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.CarStayTimeDTOMapper;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.PointInterestDTOMapper;
-import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.mapper.PositionDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.CarStayTimeDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.gateways.impl.*;
-import com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper.PointInterestEntityMapper;
-import com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper.PositionEntityMapper;
+import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PointInterestEntityMapper;
+import com.mob7.vehiclestaytime.infrastructure.gateways.impl.PositionEntityMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
-import com.mob7.vehiclestaytime.infrastructure.persistence.PositionRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -43,8 +41,8 @@ public class PointInterestConfig {
         return new PointInterestServiceGateway(pointInterestRepository, pointInterestEntityMapper);
     }
     @Bean
-    PositionGateway positionGateway(PointInterestRepository pointInterestRepository, PositionRepository positionRepository, PositionEntityMapper positionEntityMapper, PositionClient positionClient, PositionDTOMapper positionDTOMapper){
-        return new PositionServiceGateway( pointInterestRepository, positionRepository,  positionEntityMapper,  positionClient,  positionDTOMapper);
+    PositionGateway positionGateway(){
+        return new PositionServiceGateway();
     }
     @Bean
     CarStayTimeGateway carStayTimeGateway(){

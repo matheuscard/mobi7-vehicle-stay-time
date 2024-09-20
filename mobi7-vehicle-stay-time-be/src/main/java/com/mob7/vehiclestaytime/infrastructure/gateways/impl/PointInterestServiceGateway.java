@@ -2,7 +2,6 @@ package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 
 import com.mob7.vehiclestaytime.application.gateways.PointInterestGateway;
 import com.mob7.vehiclestaytime.domain.model.PointInterest;
-import com.mob7.vehiclestaytime.infrastructure.gateways.impl.mapper.PointInterestEntityMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.entities.PointInterestEntity;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
 
