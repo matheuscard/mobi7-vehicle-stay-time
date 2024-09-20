@@ -1,5 +1,6 @@
 package com.mob7.vehiclestaytime.infrastructure.controllers;
 
+import com.mob7.vehiclestaytime.application.usecases.GetCarsWithStayTimeOnPOIUseCase;
 import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositionsUseCase;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,18 +14,25 @@ import java.util.List;
 @Tag(name = "Point Interest Vehicle Stay Time", description = "Point Interest Vehicle Stay Time. Contains all the operations for filter by pate and date stay time of vehicle on specifically point of interest ")
 public class PointInterestController {
     private final GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase;
-    private final PointInterestDTOMapper pointInterestDTOMapper;
+    private final GetCarsWithStayTimeOnPOIUseCase getCarsWithStayTimeOnPOIUseCase;
     private final PositionDTOMapper positionDTOMapper;
+    private  final CarDTOMapper carDTOMapper;
 
-    public PointInterestController(GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase, PointInterestDTOMapper pointInterestDTOMapper, PositionDTOMapper positionDTOMapper) {
+    public PointInterestController(GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase, GetCarsWithStayTimeOnPOIUseCase getCarsWithStayTimeOnPOIUseCase, PositionDTOMapper positionDTOMapper, CarDTOMapper carDTOMapper) {
         this.getPointInterestsWithPositionsUseCase = getPointInterestsWithPositionsUseCase;
-        this.pointInterestDTOMapper = pointInterestDTOMapper;
+        this.getCarsWithStayTimeOnPOIUseCase = getCarsWithStayTimeOnPOIUseCase;
         this.positionDTOMapper = positionDTOMapper;
+        this.carDTOMapper = carDTOMapper;
     }
 
     @GetMapping
     List<PositionResponse> get(PositionRequest positionRequest){
         var res= getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions(positionRequest.getPlate(),positionRequest.getDate());
         return positionDTOMapper.toResponseList(res);
+    }
+    @GetMapping(path = "/cars")
+    List<CarReponse> getCarStayTime(PositionRequest positionRequest){
+        var res = getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions(positionRequest.getPlate(),positionRequest.getDate());
+        return carDTOMapper.toResponseList(getCarsWithStayTimeOnPOIUseCase.getCarsWithStayTimeOnPOI(res));
     }
 }

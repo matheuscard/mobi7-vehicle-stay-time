@@ -6,6 +6,7 @@ import com.mob7.vehiclestaytime.application.usecases.GetPointInterestsWithPositi
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.PointInterestClient;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.PositionClient;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestDTOMapper;
+import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestResponse;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PositionRepository;
@@ -14,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class FirstInserts implements ApplicationRunner {
@@ -43,12 +46,9 @@ public class FirstInserts implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if (pointInterestRepository.count() != 0) {
-            return;
-        }
-        logger.info("Nenhuma posicao cadastrada.");
-        if(pointInterestRepository.count() == 0 ) {
-            pointInterestClient.getPoints().forEach(pointInterestResponse -> {
+        final List<PointInterestResponse> pointInterestResponses = pointInterestClient.getPoints();
+        if(pointInterestRepository.count()<pointInterestResponses.size()) {
+            pointInterestResponses.forEach(pointInterestResponse -> {
                 var poi = pointInterestDTOMapper.toDomain(pointInterestResponse);
                 createPointInterestUseCase.insertPointInterest(poi);
             });

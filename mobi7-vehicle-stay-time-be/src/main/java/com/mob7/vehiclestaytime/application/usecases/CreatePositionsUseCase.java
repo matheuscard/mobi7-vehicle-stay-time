@@ -9,7 +9,7 @@ public class CreatePositionsUseCase {
     public CreatePositionsUseCase(final PositionGateway positionGateway) {
         this.positionGateway = positionGateway;
     }
-    public Position insertPointInterest(final Position position){
+    public Position insertPosition(final Position position){
         return positionGateway.insertPosition(position);
     }
 

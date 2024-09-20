@@ -1,6 +1,8 @@
 package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
 
+import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import com.mob7.vehiclestaytime.domain.model.Position;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,5 +33,9 @@ public class PositionDTOMapper {
             positions.add(new PositionResponse(posDomain.id(),posDomain.plate(),posDomain.date().toString(),posDomain.velocity(),posDomain.latitude(), posDomain.longitude(), posDomain.ignition(),posDomain.pointInterest()));
         });
         return positions;
+    }
+    public Page<PositionResponse> toResponsePage(final Page<Position> positionsDomain){
+        Page<PositionResponse> positionPage = positionsDomain.map(positionDomain -> new PositionResponse(positionDomain.id(),positionDomain.plate(),positionDomain.date().toString(),positionDomain.velocity(),positionDomain.latitude(),positionDomain.longitude(),positionDomain.ignition(),positionDomain.pointInterest()));
+        return positionPage;
     }
 }
