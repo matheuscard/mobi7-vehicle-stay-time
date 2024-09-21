@@ -12,4 +12,4 @@
 
 # Architecture
 
-![screenshot]([screenshot.png](https://github.com/matheuscard/mobi7-vehicle-stay-time/blob/main/images/mob7-vehicle-stay-time-Clean%20Architecture.drawio.png))
+![screenshot.png](https://github.com/matheuscard/mobi7-vehicle-stay-time/blob/main/images/mob7-vehicle-stay-time-Clean%20Architecture.drawio.png))
