@@ -10,6 +10,7 @@ import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PointInterestRes
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionDTOMapper;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PointInterestRepository;
 import com.mob7.vehiclestaytime.infrastructure.persistence.PositionRepository;
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
@@ -32,6 +33,7 @@ public class FirstInserts implements ApplicationRunner {
     private final PositionClient positionClient;
     private final PointInterestDTOMapper pointInterestDTOMapper;
     private final PositionDTOMapper positionDTOMapper;
+
     public FirstInserts(CreatePointInterestUseCase createPointInterestUseCase, CreatePositionsUseCase createPositionsUseCase, GetPointInterestsWithPositionsUseCase getPointInterestsWithPositionsUseCase, PointInterestRepository pointInterestRepository, PositionRepository positionRepository, PointInterestClient pointInterestClient, PositionClient positionClient, PointInterestDTOMapper pointInterestDTOMapper, PositionDTOMapper positionDTOMapper) {
         this.createPointInterestUseCase = createPointInterestUseCase;
         this.createPositionsUseCase = createPositionsUseCase;
@@ -46,13 +48,16 @@ public class FirstInserts implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        final List<PointInterestResponse> pointInterestResponses = pointInterestClient.getPoints();
-        if(pointInterestRepository.count()<pointInterestResponses.size()) {
-            pointInterestResponses.forEach(pointInterestResponse -> {
-                var poi = pointInterestDTOMapper.toDomain(pointInterestResponse);
-                createPointInterestUseCase.insertPointInterest(poi);
-            });
+        try {
+            final List<PointInterestResponse> pointInterestResponses = pointInterestClient.getPoints();
+            if (pointInterestRepository.count() < pointInterestResponses.size()) {
+                pointInterestResponses.forEach(pointInterestResponse -> {
+                    var poi = pointInterestDTOMapper.toDomain(pointInterestResponse);
+                    createPointInterestUseCase.insertPointInterest(poi);
+                });
+            }
+        } catch (FeignException.FeignClientException.ServiceUnavailable e) {
         }
-        final var plates = positionClient.getCars();
+
     }
 }

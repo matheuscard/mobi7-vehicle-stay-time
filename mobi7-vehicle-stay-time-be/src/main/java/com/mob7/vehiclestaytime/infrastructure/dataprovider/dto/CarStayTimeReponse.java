@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 @Builder
 public class CarStayTimeReponse {
-    @JsonProperty("placa")
+    @JsonProperty("plate")
     private String plate;
-    @JsonProperty(value = "qtd_tempo")
+    @JsonProperty(value = "timeStay")
     private String time;
-    @JsonProperty("ponto_interesse")
+    @JsonProperty("pointInterest")
     private PointInterestResponse pointInterestResponse;
 }

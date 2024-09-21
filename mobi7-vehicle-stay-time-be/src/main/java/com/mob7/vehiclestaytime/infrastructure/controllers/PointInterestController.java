@@ -25,12 +25,7 @@ public class PointInterestController {
     @Autowired
     private CarStayTimeDTOMapper carStayTimeDTOMapper;
 
-    @GetMapping
-    List<PositionResponse> get(PositionRequest positionRequest){
-        var res= getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions(positionRequest.getPlate(),positionRequest.getDate());
-        return positionDTOMapper.toResponseList(res);
-    }
-    @GetMapping(path = "/cars")
+    @GetMapping(path = "")
     List<CarStayTimeReponse> getCarStayTime(PositionRequest positionRequest){
         var res = getPointInterestsWithPositionsUseCase.getPointInterestsWithPositions(positionRequest.getPlate(),positionRequest.getDate());
         return carStayTimeDTOMapper.toResponseList(getCarsWithStayTimeOnPOIUseCase.getCarsWithStayTimeOnPOI(res));

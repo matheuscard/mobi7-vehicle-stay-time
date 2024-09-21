@@ -1,6 +1,5 @@
 package com.mob7.vehiclestaytime.infrastructure.dataprovider;
 
-import com.mob7.vehiclestaytime.domain.model.Car;
 import com.mob7.vehiclestaytime.infrastructure.dataprovider.dto.PositionResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;

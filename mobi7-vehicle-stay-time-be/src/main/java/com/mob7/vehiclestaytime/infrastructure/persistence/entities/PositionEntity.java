@@ -1,6 +1,4 @@
 package com.mob7.vehiclestaytime.infrastructure.persistence.entities;
-
-import com.mob7.vehiclestaytime.infrastructure.persistence.entities.PointInterestEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
