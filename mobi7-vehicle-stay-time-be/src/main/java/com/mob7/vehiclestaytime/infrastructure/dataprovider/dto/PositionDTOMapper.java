@@ -1,5 +1,6 @@
 package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
 
+import com.mob7.vehiclestaytime.domain.model.PointInterest;
 import com.mob7.vehiclestaytime.domain.model.Position;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +9,9 @@ import java.util.List;
 
 public class PositionDTOMapper {
     private final PointInterestDTOMapper pointInterestDTOMapper;
-
+    public PositionResponse toResponse(final Position posDomain){
+        return new PositionResponse(posDomain.id(), posDomain.plate(), posDomain.date().toString(), posDomain.velocity(), posDomain.latitude(), posDomain.longitude(), posDomain.ignition(), null);
+    }
     public PositionDTOMapper(PointInterestDTOMapper pointInterestDTOMapper) {
         this.pointInterestDTOMapper = pointInterestDTOMapper;
     }

@@ -37,8 +37,8 @@ public class PointInterestConfig {
     }
 
     @Bean
-    PointInterestGateway pointInterestGateway(PointInterestRepository pointInterestRepository, PointInterestEntityMapper pointInterestEntityMapper) {
-        return new PointInterestServiceGateway(pointInterestRepository, pointInterestEntityMapper);
+    PointInterestGateway pointInterestGateway() {
+        return new PointInterestServiceGateway();
     }
     @Bean
     PositionGateway positionGateway(){
@@ -65,7 +65,7 @@ public class PointInterestConfig {
         return new PositionDTOMapper(pointInterestDTOMapper);
     }
     @Bean
-    CarStayTimeDTOMapper carStayTimeDTOMapper(PointInterestDTOMapper pointInterestDTOMapper) {
-        return new CarStayTimeDTOMapper(pointInterestDTOMapper);
+    CarStayTimeDTOMapper carStayTimeDTOMapper() {
+        return new CarStayTimeDTOMapper();
     }
 }

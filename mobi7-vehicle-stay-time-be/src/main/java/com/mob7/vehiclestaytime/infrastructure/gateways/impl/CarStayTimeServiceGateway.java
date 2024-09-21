@@ -20,11 +20,12 @@ public class CarStayTimeServiceGateway implements CarStayTimeGateway {
         List<CarStayTime> cars = new ArrayList<>();
         pointsPlatesMap.entrySet().stream().forEach(pointInterest -> {
             pointInterest.getValue().entrySet().stream().forEach(plates -> cars
-                    .add(new CarStayTime(plates.getKey(), getStayTime(plates), pointInterest.getKey()))
-            );
+                    .add(new CarStayTime(plates.getKey(), getStayTime(plates),pointInterest.getKey(),getLastPositionOnPoint(plates)) ));
         });
         return cars;
     }
-
+    private Position getLastPositionOnPoint(final Map.Entry<String, List<Position>> plates){
+        return plates.getValue().get(plates.getValue().size()-1);
+    }
 
 }
