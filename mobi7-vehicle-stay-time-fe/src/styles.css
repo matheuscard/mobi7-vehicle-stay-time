@@ -5,10 +5,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
 }
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #b5d2f7;
 }
 
 .container {
@@ -16,7 +18,6 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
 }
