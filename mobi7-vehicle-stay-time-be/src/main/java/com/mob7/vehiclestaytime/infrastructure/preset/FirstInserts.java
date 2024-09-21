@@ -28,7 +28,7 @@ public class FirstInserts implements ApplicationRunner {
 
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         try {
             final List<PointInterestResponse> pointInterestResponses = pointInterestClient.getPoints();
             if (pointInterestRepository.count() < pointInterestResponses.size()) {

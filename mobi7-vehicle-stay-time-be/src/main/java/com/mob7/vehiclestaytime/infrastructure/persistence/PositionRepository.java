@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PositionRepository extends JpaRepository<PositionEntity, Long> {
     @Query("SELECT p FROM PositionEntity p " +
-            "WHERE (:plate IS NULL OR p.plate = :plate) AND " +
+            "WHERE (:plate IS NULL OR p.plate LIKE %:plate%) AND " +
             "(:startDate IS NULL OR p.date >=:startDate) AND " +
             "(:endDate IS NULL OR p.date <=:endDate)")
     List<PositionEntity> findFilteredPositions(@Param("plate") String plate,
