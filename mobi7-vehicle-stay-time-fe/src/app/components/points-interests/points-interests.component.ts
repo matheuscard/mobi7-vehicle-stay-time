@@ -36,6 +36,7 @@ export class PointsInterestsComponent implements AfterViewInit, OnInit{
   placa = ''
   date = new Date();
   term!:string;
+  mapsUrl = 'http://maps.google.com/maps?q='
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 

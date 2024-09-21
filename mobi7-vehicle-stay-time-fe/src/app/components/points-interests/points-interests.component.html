@@ -37,7 +37,9 @@
     </ng-container>
     <ng-container matColumnDef="Última Posição">
       <th mat-header-cell *matHeaderCellDef> Última Posição </th>
-      <td mat-cell *matCellDef="let car"> {{car.lastPosition.latitude}} </td>
+      <td mat-cell *matCellDef="let car">  <a href="http://maps.google.com/maps?q=,-51.5496629"></a>
+        <a target="_blank" [href]="'http://maps.google.com/maps?q='+ car.lastPosition.latitude+','+car.lastPosition.longitude">{{car.lastPosition.latitude+","+car.lastPosition.longitude}}</a>
+      </td>
     </ng-container>
     <ng-container matColumnDef="Última Data">
       <th mat-header-cell *matHeaderCellDef> Última Data </th>
