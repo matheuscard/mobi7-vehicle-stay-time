@@ -1,0 +1,9 @@
+.box{
+  border-radius: 10px;
+  display: flex;
+  align-items: stretch;
+}
+.form-field{
+  width: 30%;
+  margin-left: 10px;
+}
