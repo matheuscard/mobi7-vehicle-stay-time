@@ -34,13 +34,23 @@
     <ng-container matColumnDef="Ponto de Interesse">
       <th mat-header-cell *matHeaderCellDef> Ponto de Interesse </th>
       <td mat-cell *matCellDef="let car">
-        <a target="_blank" [href]="'http://maps.google.com/maps?q='+ car.pointInterest.latitude+','+car.pointInterest.longitude">{{car.pointInterest.nome}}</a>
+
+        <!--<img width="16" height="16" src="google-maps.png" alt="image">-->
+        <section>
+          <div class="example-button-row">
+            <a mat-flat-button [href]="'http://maps.google.com/maps?q='+ car.pointInterest.latitude+','+car.pointInterest.longitude" target="_blank">{{car.pointInterest.nome}}
+              <mat-icon>place</mat-icon>
+            </a>
+          </div>
+        </section>
       </td>
     </ng-container>
     <ng-container matColumnDef="Última Posição">
       <th mat-header-cell *matHeaderCellDef> Última Posição </th>
       <td mat-cell *matCellDef="let car">
-        <a target="_blank" [href]="'http://maps.google.com/maps?q='+ car.lastPosition.latitude+','+car.lastPosition.longitude">{{car.lastPosition.latitude+","+car.lastPosition.longitude}}</a>
+        <a mat-flat-button [href]="'http://maps.google.com/maps?q='+ car.lastPosition.latitude+','+car.lastPosition.longitude" target="_blank">{{car.lastPosition.latitude+","+car.lastPosition.longitude}}
+          <mat-icon>place</mat-icon>
+        </a>
       </td>
     </ng-container>
     <ng-container matColumnDef="Última Data">
@@ -54,9 +64,10 @@
     <ng-container matColumnDef="Ignição">
       <th mat-header-cell *matHeaderCellDef> Ignição </th>
       <td mat-cell *matCellDef="let car">
-        <div *ngIf="car.lastPosition.ignicao; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock>Encontrava-se ligado.
-        </ng-template><ng-template #elseBlock>Encontrava-se desligado</ng-template>
+        <div *ngIf="car.lastPosition.ignicao; then thenDo else elseDo"></div>
+        <ng-template #thenDo><mat-chip style="background-color: rgb(189, 225, 189);" >LIGADA</mat-chip>
+
+        </ng-template><ng-template #elseDo><mat-chip style="background-color: rgb(219, 145, 145);" >DESLIGADA</mat-chip></ng-template>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -16,12 +16,12 @@ import { Subject } from 'rxjs';
 import { DatePipe, NgIf } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-
+import {MatChipsModule} from '@angular/material/chips';
 @Component({
   selector: 'app-points-interests',
   standalone: true,
   providers: [provideNativeDateAdapter(), { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
-  imports: [NgIf,DatePipe,FormsModule,MatSlideToggleModule, MatTableModule,MatPaginatorModule, MatFormFieldModule, MatInputModule,MatDatepickerModule,MatIconModule, MatButtonModule, MatCardModule],
+  imports: [MatChipsModule,NgIf,DatePipe,FormsModule,MatSlideToggleModule, MatTableModule,MatPaginatorModule, MatFormFieldModule, MatInputModule,MatDatepickerModule,MatIconModule, MatButtonModule, MatCardModule],
   changeDetection:ChangeDetectionStrategy.OnPush,
   templateUrl: './points-interests.component.html',
   styleUrl: './points-interests.component.css'
