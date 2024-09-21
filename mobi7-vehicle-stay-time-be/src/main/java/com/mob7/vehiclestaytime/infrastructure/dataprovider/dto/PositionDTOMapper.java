@@ -1,7 +1,6 @@
 package com.mob7.vehiclestaytime.infrastructure.dataprovider.dto;
 
 import com.mob7.vehiclestaytime.domain.model.Position;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

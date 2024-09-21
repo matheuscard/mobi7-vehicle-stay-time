@@ -1,6 +1,5 @@
 package com.mob7.vehiclestaytime.infrastructure.gateways.impl;
 
-
 import com.mob7.vehiclestaytime.application.gateways.CarStayTimeGateway;
 import com.mob7.vehiclestaytime.domain.model.CarStayTime;
 import com.mob7.vehiclestaytime.domain.model.PointInterest;
@@ -14,18 +13,17 @@ public class CarStayTimeServiceGateway implements CarStayTimeGateway {
     @Override
     public List<CarStayTime> getCarsWithStayTimeOnPoi(final List<Position> positions) {
         Map<PointInterest, Map<String, List<Position>>> pointsPlatesMap =
-                positions.stream().collect(Collectors.groupingBy(Position::pointInterest, Collectors.groupingBy(Position::plate)));
-        List<CarStayTime> carros= new ArrayList<>();
+                positions
+                        .stream()
+                        .collect(Collectors.groupingBy(Position::pointInterest,
+                                Collectors.groupingBy(Position::plate)));
+        List<CarStayTime> cars = new ArrayList<>();
         pointsPlatesMap.entrySet().stream().forEach(pointInterest -> {
-            pointInterest.getValue().entrySet().stream().forEach(plates ->
-                {
-                    String stayTime = getStayTime(plates);
-                    CarStayTime carStayTime = new CarStayTime(plates.getKey(), stayTime,pointInterest.getKey());
-                    carros.add(carStayTime);
-                }
+            pointInterest.getValue().entrySet().stream().forEach(plates -> cars
+                    .add(new CarStayTime(plates.getKey(), getStayTime(plates), pointInterest.getKey()))
             );
         });
-        return carros;
+        return cars;
     }
 
 
