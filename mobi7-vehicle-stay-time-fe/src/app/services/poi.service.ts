@@ -2,17 +2,31 @@ import { CarStayTime } from './../models/CarStayTime';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PoiService {
 
-  private apiUrl = 'http://localhost:8080/api/vehicle/stay-time';
+  private apiUrl =  environment.apiUrl;
   constructor(private http: HttpClient) { }
 
   getCarStayTime() : Observable<CarStayTime[]> {
-    return this.http.get<CarStayTime[]>(this.apiUrl);
+    let params = {};
+    params = {
+      'plate': ''
+      };
+    let result: CarStayTime[] = [];
+        return this.http.get<CarStayTime[]>(this.apiUrl, {observe: 'response', params})
+    .pipe(
+        take(1)
+        , map((response) => {
+            if(response.body !=null){
+              result= response.body;
+            }
+           return result;
+        }));
   }
   getCarStayTimeByPlateOrDate(placa?:string,date?:string) : Observable<CarStayTime[]> {
     let params = {};

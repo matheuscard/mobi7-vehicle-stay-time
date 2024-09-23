@@ -3,6 +3,8 @@
   border-radius: 3px;
   display: flex;
   align-items: stretch;
+  width: 100%;
+overflow-x: auto;
 }
 .form-field{
   width: 30%;
@@ -10,3 +12,13 @@
   margin-right: 10px;
   margin-top: 30px;
 }
+.button-rounded {
+  &.mat-button,
+  &.mat-raised-button,
+  &.mat-flat-button {
+    border-radius: 25% / 50%;
+    background-color: #0092a3;
+  }
+}
+
+
