@@ -12,5 +12,5 @@
  [<img src="https://avatars.githubusercontent.com/u/50079522?s=400&v=4" width=115><br><sub>Matheus Cardozo</sub>](https://github.com/matheuscard) 
 
 # Architecture
-
+![screenshot.png](https://raw.githubusercontent.com/matheuscard/mobi7-vehicle-stay-time/c102ef8e4591783b5d06c4b43a4068edb39c7b41/images/mob7-vehicle-stay-time-integration.draw.i.png)
 ![screenshot.png](https://github.com/matheuscard/mobi7-vehicle-stay-time/blob/main/images/mob7-vehicle-stay-time-Clean%20Architecture.drawio.png)
