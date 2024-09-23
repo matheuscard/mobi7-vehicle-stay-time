@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit, AfterViewInit, ViewChild, C
 import { PoiService } from '../../services/poi.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -40,7 +41,7 @@ export class PointsInterestsComponent implements AfterViewInit, OnInit{
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(private poiService: PoiService, private cdr: ChangeDetectorRef){
+  constructor(private breakpointObserver: BreakpointObserver, private poiService: PoiService, private cdr: ChangeDetectorRef){
     registerLocaleData(localePt);
   }
 
@@ -49,7 +50,13 @@ export class PointsInterestsComponent implements AfterViewInit, OnInit{
   }
 
   ngOnInit(): void {
-
+    this.breakpointObserver.observe([
+      Breakpoints.Handset
+    ]).subscribe(result => {
+      if (result.matches) {
+        // Apply specific styles or logic for mobile devices
+      }
+    });
   }
   ngAfterViewInit() {
     this.poiService.getCarStayTime().subscribe((carStayTime)=>{

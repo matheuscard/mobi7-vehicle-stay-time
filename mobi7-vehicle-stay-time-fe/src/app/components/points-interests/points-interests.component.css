@@ -7,7 +7,7 @@
 overflow-x: auto;
 }
 .form-field{
-  width: 30%;
+  width: 400px;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 30px;
@@ -18,6 +18,24 @@ overflow-x: auto;
   &.mat-flat-button {
     border-radius: 25% / 50%;
     background-color: #0092a3;
+  }
+}
+
+table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+}
+
+@media (max-width: 300px) {
+  th, td {
+    display: block;
+    width: 100%;
   }
 }
 
