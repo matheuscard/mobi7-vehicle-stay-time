@@ -2,18 +2,22 @@ spring:
     application:
         name: mobi7-vehicle-stay-time-be
     datasource:
-        url: jdbc:mysql://localhost:3306/mob7
-        username: root
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
         password: root
-        driver-class-name: com.mysql.cj.jdbc.Driver
 
     jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
-        show-sql: true
-
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: update
+        show-sql: false
+    flyway:
+            baseline-on-migrate: true
+            baseline-version: 0
+            clean-on-validation-error: true
+            clean-disabled: false
 server:
     port: 8080
-
 mob7feign:
         name: mob7
         name-pos: mob7-position

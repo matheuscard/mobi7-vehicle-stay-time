@@ -59,7 +59,7 @@ public class PositionServiceGateway implements PositionGateway {
     }
 
     private List<Position> getPositionsFiltered(final String plate, final String date) {
-        List<PositionEntity> positionEntities = positionRepository.findFilteredPositions(plate, getLocalDateTime(date, true), getLocalDateTime(date, false));
+        List<PositionEntity> positionEntities = positionRepository.findFilteredPositions(plate!=null && !plate.isEmpty()?plate.toUpperCase():"", getLocalDateTime(date, true), getLocalDateTime(date, false));
         return positionEntityMapper.toDomainList(positionEntities);
     }
 

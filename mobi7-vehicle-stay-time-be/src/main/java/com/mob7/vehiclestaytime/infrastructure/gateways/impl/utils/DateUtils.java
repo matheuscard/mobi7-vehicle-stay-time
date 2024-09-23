@@ -2,11 +2,9 @@ package com.mob7.vehiclestaytime.infrastructure.gateways.impl.utils;
 
 import com.mob7.vehiclestaytime.domain.model.Position;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +23,13 @@ public class DateUtils {
             } else {
                 dateLdt = LocalDateTime.of(ld, LocalDateTime.MAX.toLocalTime());
             }
+        }else{
+            if(isStartDate){
+                dateLdt = LocalDateTime.of(1970,Month.APRIL, 1, 0, 0);
+            }else{
+                dateLdt = LocalDateTime.now();
+            }
+
         }
         return dateLdt;
     }
